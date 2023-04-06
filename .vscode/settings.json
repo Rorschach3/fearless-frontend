@@ -1,0 +1,6 @@
+{
+    "livePreview.showServerStatusNotifications": true,
+    "livePreview.debugOnExternalPreview": true,
+    "livePreview.customExternalBrowser": "Chrome",
+    "vs-openai.apiKey": "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"
+}
