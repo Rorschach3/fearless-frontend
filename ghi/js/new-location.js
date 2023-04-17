@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", async () => {
-  const url = "http://localhost:8000/api/states/";
+  const url = "http://127.0.0.1:8000/api/states/";
 
   const response = await fetch(url);
 
@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       const json = JSON.stringify(Object.fromEntries(formData));
       console.log(json);
 
-      const locationUrl = "http://localhost:8000/api/locations/";
+      const locationUrl = "http://127.0.0.1:8000/api/locations/";
       const fetchConfig = {
         method: "POST",
         body: json,

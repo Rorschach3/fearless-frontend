@@ -1,81 +1,68 @@
-/*function createCard(name, description, pictureUrl, starts, ends) {
+function createCard(name, description, pictureUrl, starts, ends) {
   return `
-    <div class="card">
-      <img src="${pictureUrl}" class="card-img-top">
-      <div class="card-body">
-        <h5 class="card-title">${name}</h5>
-        <p class="card-text">${description}</p>
-      </div>
-      <div class="card-footer">
-          ${new Date(starts).toLocaleDateString()} - ${new Date(
-    ends
-  ).toLocaleDateString()}
-      </div>
+        <div class="card">
+            <img src="${pictureUrl}" class="card-img-top">
+        < class="card-body">
+            <h5 class="card-title">${name}</h5>
+            <p class="card-text">${description}</p>
+            <div class="card-footer">
+            ${dateStart} - ${dateEnd}
+            </div>
+        </div>
     </div>
-  `;
-}*/
+</div>
+`;
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  return `${month}/${day}/${year}`;
+}
 
 window.addEventListener("DOMContentLoaded", async () => {
-  const url = "http://localhost:8000${conference.href}";
+  const url = "http://127.0.0.1:8000/api/conferences/";
 
   try {
     const response = await fetch(url);
 
     if (!response.ok) {
-      console.log(response.status);
-
       // Figure out what to do when the response is bad
-      // We can use the response.status and response.statusText to help us
     } else {
       const data = await response.json();
 
-      if (data.conferences && data.conferences.length > 0) {
-        const conference = data.conferences[2];
-        const nameTag = document.querySelector(".card-title");
-        nameTag.innerHTML = conference.name;
-
-        const detailUrl = "http://localhost:8000" + conference.href;
+      let columnIndex = 1;
+      for (let conference of data.conferences) {
+        const detailUrl = `http://127.0.0.1:8000${conference.href}`;
         const detailResponse = await fetch(detailUrl);
         if (detailResponse.ok) {
           const details = await detailResponse.json();
-          console.log(details);
+          const name = details.conference.name;
+          const description = details.conference.description;
+          const startDate = formatDate(details.conference.starts);
+          const endDate = formatDate(details.conference.ends);
+          const pictureUrl = details.conference.location.picture_url;
+          const html = createCard(
+            name,
+            description,
+            pictureUrl,
+            startDate,
+            endDate
+          );
+          const column = document.querySelector(`#column${columnIndex}`);
+          column.innerHTML += html;
+          columnIndex++;
+          if (columnIndex > 3) {
+            columnIndex = 1;
+          }
         }
-      } else {
-        // Figure out what to do when there are no conferences
-        console.log(response.statusText);
       }
     }
-  } catch (error) {
-    console.log(error);
+  } catch (e) {
+    console.error("error", error);
+    // Figure out what to do if an error is raised
   }
 });
-/*try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      // Figure out what to do when the response is bad
-    } else {
-      const data = await response.json();
-
-      for (let conference of data.conferences) {
-        const detailUrl = `http://localhost:8000${conference.href}`;
-        const detailResponse = await fetch(detailUrl);
-        if (detailResponse.ok) {
-          const details = await detailResponse.json();
-          console.log(details.conference);
-          const title = details.conference.name;
-          const description = details.conference.description;
-          const pictureUrl = details.conference.location.picture_url;
-          const starts = details.conference.starts;
-          const ends = details.conference.ends;
-          const html = createCard(title, description, pictureUrl, starts, ends);
-          const column = document.querySelector(".col");
-          console.log(column);
-          column.innerHTML += html;
-        }
-      }
-    }
-  } catch (error) {
-    console.log(error);
-  }
-})};*/
