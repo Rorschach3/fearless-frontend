@@ -34,7 +34,7 @@ const MainPage = (props) => {
   const [conferenceColumns, setConferenceColumns] = useState([[], [], []]);
 
   const fetchData = async () => {
-    const url = "http://localhost:8000/api/conferences/";
+    const url = "http://127.0.0.1:8000/api/conferences/";
 
     try {
       const response = await fetch(url);
@@ -46,7 +46,7 @@ const MainPage = (props) => {
         // add all of the requests to it
         const requests = [];
         for (let conference of data.conferences) {
-          const detailUrl = `http://localhost:8000${conference.href}`;
+          const detailUrl = `http://127.0.0.1:8000${conference.href}`;
           requests.push(fetch(detailUrl));
         }
 

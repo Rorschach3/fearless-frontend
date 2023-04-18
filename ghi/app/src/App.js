@@ -5,7 +5,7 @@ import LocationForm from "./LocationForm";
 import ConferenceForm from "./ConferenceForm";
 import AttendConferenceForm from "./AttendConferenceForm";
 import MainPage from "./MainPage";
-import PresentationForm from "./PresentationForm";
+import PresentationForm from "./new-presentation";
 
 function App(props) {
   if (props.attendees === undefined) {
