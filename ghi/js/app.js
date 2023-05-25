@@ -1,4 +1,18 @@
-window.addEventListener('DOMContentLoaded', async () => {
+function createCard(name, description, pictureUrl, starts, end, location) {
+    return `
+        <div class="col">
+        <div class="card h-100">
+          <img src="${pictureUrl}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">${name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">${description}</p>
+            <div class="card-footer">
+  
+          </div>
+        </div>         
+    `;
+}
 
     const url = 'http://localhost:8000/api/conferences/';
 
@@ -32,6 +46,4 @@ window.addEventListener('DOMContentLoaded', async () => {
     //handle error 
     } catch (e) {
 
-    }
-    
-  });
+    };

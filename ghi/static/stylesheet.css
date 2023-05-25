@@ -1,0 +1,29 @@
+/* Card */
+.row .col .col .card{
+    display:grid;
+    align-content:center;
+    column-gap:0px;
+    transform:translatex(0px) translatey(0px);
+   }
+   
+   /* Card */
+   main .container .row .col .col .card{
+    grid-template-rows:1fr 1fr !important;
+    grid-template-columns:30% 30% !important;
+   }
+   
+   /* Col */
+   .container .row > .col{
+    grid-template-columns:30% 30%;
+   }
+   
+   /* Image */
+   .image.card-img {
+        display:flex;
+        grid-template-columns:30% 30%;
+        grid-template-rows:30% 1fr;
+        float:none;
+        justify-content:center;
+   }
+   
+   

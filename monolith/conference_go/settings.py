@@ -28,7 +28,7 @@ SECRET_KEY = (
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "monolith"]
+ALLOWED_HOSTS = ["localhost", "monolith", "127.0.0.1"]
 
 
 # Override the basic User model with a custom User model
